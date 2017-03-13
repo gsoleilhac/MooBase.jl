@@ -21,7 +21,7 @@ LAP(c1::Matrix{Int}, c2::Matrix{Int}) = LAP(size(c1,1), c1::Matrix{Int}, c2::Mat
 
 type LAPsolver
     parameters
-    solve
+    solve#::Function(id::LAP) -> ...
 end
 
 function solveLAP(id::LAP, solver::LAPsolver)
@@ -29,11 +29,9 @@ function solveLAP(id::LAP, solver::LAPsolver)
 end
 
 function LAP_Przybylski2008()::LAPsolver
-    if isfile(joinpath(dirname(@__FILE__),"libLAP.so"))
-        println("ok")
-    else
-        println("nok")
-    end
+    # if !isfile(joinpath(dirname(@__FILE__),"libLAP.so"))
+        cd(() -> run(`make`), dirname(@__FILE__))
+    # end
     mylibvar = joinpath(dirname(@__FILE__),"libLAP.so")
     f = (id::LAP) -> @eval ccall( (:solve_bilap_exact, $mylibvar), Void, (Ref{Cint},Ref{Cint}, Cint), $id.C1, $id.C2, $id.nAssignments)
     return LAPsolver(nothing, f)
