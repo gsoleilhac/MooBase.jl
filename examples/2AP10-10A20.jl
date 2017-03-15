@@ -23,4 +23,9 @@ C2 = [16 5 6 19 12 7 18 19 16 10 ;
 
 id = LAP(10, C1, C2)
 solver = LAP_Przybylski2008()
-solveLAP(id, solver)
+z1,z2,solutions = solveLAP(id, solver)
+
+
+for i = 1:length(z1)
+    println("($(z1[i]) | $(z2[i])) : $(solutions[i,:])")
+end
