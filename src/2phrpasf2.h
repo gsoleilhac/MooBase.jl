@@ -505,5 +505,5 @@ void lancerLesTest(short int ,int C1[SizeMax][SizeMax],int C2[SizeMax][SizeMax],
 /* \brief main
  * \fn solve_bilap_exact()
  */
-void solve_bilap_exact(int *c1,int *c2, int nSize); 
+void solve_bilap_exact(int *c1,int *c2, int nSize, int **z1, int **z2, int **solutions, int *nbsolutions); 
 #endif
