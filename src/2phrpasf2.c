@@ -98,7 +98,7 @@ void supprimer(int *t,int *taille,int n)
 {
 int i = 0;
 while ((i < *taille) && (t[i] != n)) i++;
-if (i >= *taille) {printf("%d non trouvÈ",n);exit(0);}
+if (i >= *taille) {printf("%d non trouv√©",n);exit(0);}
 	else
 	{
 	t[i] = t[*taille - 1];
@@ -128,7 +128,7 @@ void supprimersh(short int *t,int *taille,int n)
 {
 int i = 0;
 while ((i < *taille) && (t[i] != n)) i++;
-if (i >= *taille) {printf("%d non trouvÈ",n);exit(0);}
+if (i >= *taille) {printf("%d non trouv√©",n);exit(0);}
 	else
 	{
 	t[i] = t[*taille - 1];
@@ -143,7 +143,7 @@ void supprimerordre(int *t,int *taille,int n)
 {
 int i = 0,j;
 while((i < *taille) && (t[i] != n)) i++;
-if (i >= *taille) {printf("%d non trouvÈ",n);exit(0);}
+if (i >= *taille) {printf("%d non trouv√©",n);exit(0);}
 	else
 	{
 	for (j = i;j < (*taille - 1);j++) t[j] = t[j+1];
@@ -1380,25 +1380,14 @@ if (borne >=0)
     }
 }
 
-void solve_bilap_exact(int *c1, int *c2, int nSize)
+void solve_bilap_exact(int *c1, int *c2, int nSize, int **z1, int **z2, int **solutions, int* nbsolutions)
 {
 int i,j,k,lg;
 int C1[SizeMax][SizeMax],C2[SizeMax][SizeMax],Cd[SizeMax][SizeMax];
 solution s;
 int Ctemp[SizeMax][SizeMax];
-// donnees  uneInstance;
 listeSol listePE;
 
-  //FILE   *fOut;
-  
-/* Welcome --------------------------------------------------------- */
-
-// showTitle();
-
-printf("Test C1[0][0] : %d\n", c1[0]);
-printf("\n Memory size used : \n");
-// printf("   - an instance : %ld \n", sizeof(uneInstance));
-printf("   - a list      : %ld \n\n", sizeof(listePE));
 
 /* Initialisation ------------------------------------------------- */
 
@@ -1494,9 +1483,6 @@ printf("   - a list      : %ld \n\n", sizeof(listePE));
 
   /* fin : affichage des resultats */
 	 
-	 // crono_stop();
-	 // temps = crono_ms()/1000,0;
-
      sortApproximation1(&(listePE.liste[lg]),listePE.lgListe - lg);
      printf("\n\n Compte-rendu\n");
      printf(" ============\n\n");
@@ -1510,7 +1496,20 @@ printf("   - a list      : %ld \n\n", sizeof(listePE));
      printf(" Nbre Points non-domines Phase 1 (Supportes extremes + qques non-extremes) : %d\n",      lg);
      printf(" Nbre Points non-domines Phase 2 : %ld\n",  listePE.lgListe - lg);
 	 printf(" Nbre Total : %ld\n", listePE.lgListe);
-    
+   
+   *z1 = calloc(listePE.lgListe, sizeof(int));
+   *z2 = calloc(listePE.lgListe, sizeof(int));
+   *solutions = calloc(listePE.lgListe * nSize, sizeof(int));
+   *nbsolutions = listePE.lgListe;
+
+
+   for (i = 0; i < listePE.lgListe ; i++){
+	   (*z1)[i] = (listePE.liste[i]).z[0];
+	   (*z2)[i] = (listePE.liste[i]).z[1];
+	   for(j = 0; j < nSize; j++){
+	     (*solutions)[i*nSize + j] = (listePE.liste[i]).X[j];
+	   }
+	}
 	//FILE * fOut1;
 	//fOut1 = fopen("res2ph.txt","wt");
 	//fprintf(fOut1,"%ld\n",listePE.lgListe);
