@@ -2,6 +2,8 @@ module MooBase
 
 export LAP, LAPsolver, solveLAP, LAP_Przybylski2008
 
+const LIBPATH = joinpath(dirname(@__FILE__),"..","deps")
+
 type LAP
     nSize::Cint
     C1::Array{Cint, 1}
@@ -28,16 +30,7 @@ function solveLAP(id::LAP, solver::LAPsolver)
 end
 
 function LAP_Przybylski2008()::LAPsolver
-    if isfile(joinpath(dirname(@__FILE__),"libLAP.so"))
-        cd(() -> run(`rm libLAP.so`), dirname(@__FILE__)) #for debugging
-    end
-    if isfile(joinpath(dirname(@__FILE__),"2phrpasf2.o"))
-        cd(() -> run(`rm 2phrpasf2.o`), dirname(@__FILE__)) #for debugging
-    end
-    if !isfile(joinpath(dirname(@__FILE__),"libLAP.so"))
-        cd(() -> run(`make`), dirname(@__FILE__))
-    end
-    mylibvar = joinpath(dirname(@__FILE__),"libLAP.so")
+    mylibvar = joinpath(LIBPATH,"libLAP.so")
 
     f = (id::LAP) -> begin 
         p_z1,p_z2,p_solutions,p_nbsolutions = Ref{Ptr{Cint}}() , Ref{Ptr{Cint}}(), Ref{Ptr{Cint}}(), Ref{Cint}()
