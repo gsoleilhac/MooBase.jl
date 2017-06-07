@@ -10,7 +10,11 @@ moo_objects = $(patsubst src/moo/%.cpp, obj/%.o, $(moo_sources))
 
 all: tree compile
 
+obj:
+	mkdir obj
+
 tree:
+	$(obj)
 	make -C src/bikp
 	make -C src/kp
 	make -C src/moo
