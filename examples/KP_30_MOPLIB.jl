@@ -6,7 +6,7 @@ weigths = [80,87,68,72,66,77,99,85,70,93,98,72,100,89,67,86,91,79,71,99,69,83,76
 capacity = 1188
 
 id = KP(z1,z2,weigths,capacity)
-z1,z2,weights,res = solveKP(id)
+z1,z2,sol_weigths,res = solveKP(id)
 
 
 
