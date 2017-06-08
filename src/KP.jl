@@ -11,6 +11,10 @@ KP(z1, z2, weigths, capacity) = begin
     if length(z1) != length(z2)
         error("dimensions incorrectes")
     end
+    assert(all(x -> x >= 0, z1))
+    assert(all(x -> x >= 0, z2))
+    assert(all(x -> x >= 0, weigths))
+    assert(capacity > 0)
     KP(z1,z2,Int[],weigths,capacity)
 end
 
