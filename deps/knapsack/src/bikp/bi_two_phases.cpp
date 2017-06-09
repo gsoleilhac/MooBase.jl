@@ -49,10 +49,8 @@ bi_two_phases::run( const bi_problem& p, std::list<bi_solution>& sols ) const
 
       phase_2.run(p, X_SE);
 
-      sols.insert( sols.begin(), phase_2.get_solutions().begin(),
-                   phase_2.get_solutions().end() );
+      sols.insert( sols.begin(), phase_2.get_solutions().begin(), phase_2.get_solutions().end() );
     }
   else
-    sols.insert
-      ( sols.begin(), efficient_solutions.begin(), efficient_solutions.end() );
+    sols.insert( sols.begin(), efficient_solutions.begin(), efficient_solutions.end() );
 } // bi_two_phases::run()

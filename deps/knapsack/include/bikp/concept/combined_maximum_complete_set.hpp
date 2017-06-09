@@ -25,6 +25,7 @@
 #include <map>
 #include <list>
 
+
 /**
  * \brief A set of non-dominated combined solutions, with equivalent ones.
  *
@@ -67,6 +68,9 @@ public:
     typedef typename list_iterator::pointer pointer;
 
   public:
+    
+    typedef std::input_iterator_tag iterator_category;
+
     const_iterator()
     { }
 
