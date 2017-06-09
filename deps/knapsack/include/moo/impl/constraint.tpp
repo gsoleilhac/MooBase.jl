@@ -144,18 +144,18 @@ std::ostream& moo::constraint<T>::output( std::ostream& os ) const
  * \brief Save the constraint set in a format understood by gnuplot.
  * \param gp The stream in which we write gnuplot instructions.
  */
-template<typename T>
-void moo::constraint<T>::gnuplot( std::ostream& gp ) const
-{
-  if ( m_coefficient[1] == 0 )
-    gp << m_right_hand_side << " / " << m_coefficient[0] << " title \""
-       << *this << '"';
-  else
-    gp << '(' << m_right_hand_side << " - " << m_coefficient[0] << " * x)"
-       << " / " << m_coefficient[1] << " title \"" << *this << '"';
+// template<typename T>
+// void moo::constraint<T>::gnuplot( std::ostream& gp ) const
+// {
+//   if ( m_coefficient[1] == 0 )
+//     gp << m_right_hand_side << " / " << m_coefficient[0] << " title \""
+//        << *this << '"';
+//   else
+//     gp << '(' << m_right_hand_side << " - " << m_coefficient[0] << " * x)"
+//        << " / " << m_coefficient[1] << " title \"" << *this << '"';
 
-  gp << " with lines 1";
-} // constraint::gnuplot()
+//   gp << " with lines 1";
+// } // constraint::gnuplot()
 
 /*----------------------------------------------------------------------------*/
 /**

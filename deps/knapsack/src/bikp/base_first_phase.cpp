@@ -65,7 +65,7 @@ void base_first_phase::run(const bi_problem& p)
   m_extreme_solutions.insert(x1);
   m_extreme_solutions.insert(x2);
 
-  if ( m_extreme_solutions.size() > 1. )
+  if ( m_extreme_solutions.size() > real_type(1) )
     {
       /*//m_logger.log() << "getting x1 and x2 pareto optimal." << std::endl;
 	calculate_pareto_optimal(p, x1, x2);*/
@@ -183,12 +183,12 @@ void base_first_phase::calculate_pareto_optimal
 
   bi_profit utopian;
 
-  utopian.profit_1 = x2.objective_value().profit_1 + 1.;
-  utopian.profit_2 = x1.objective_value().profit_2 - 1.;
+  utopian.profit_1 = x2.objective_value().profit_1 + real_type(1);
+  utopian.profit_2 = x1.objective_value().profit_2 - real_type(1);
   calculate_lambda_unique( p, x1.objective_value(), utopian, x1 );
 
-  utopian.profit_1 = x2.objective_value().profit_1 - 1.;
-  utopian.profit_2 = x1.objective_value().profit_2 + 1.;
+  utopian.profit_1 = x2.objective_value().profit_1 - real_type(1);
+  utopian.profit_2 = x1.objective_value().profit_2 + real_type(1);
   calculate_lambda_unique( p, utopian, x2.objective_value(), x2 );
 
 #ifndef NDEBUG
@@ -243,7 +243,7 @@ void base_first_phase::calculate_solutions
       new_solutions.clear();
       calculate_triangle(p, sols.first, sols.second, new_solutions);
 
-      if (new_solutions.size() > 0.)
+      if (new_solutions.size() > real_type(0))
 	if ( update_solutions(sols.first, sols.second, new_solutions) )
 	  {
 	    it1 = new_solutions.begin();
@@ -471,7 +471,7 @@ void base_first_phase::find_multiple
 ( const combined_problem& mono_p,
   combined_optimal_set_type& new_solutions ) const
 {
-  assert(new_solutions.size() > 0.);
+  assert(new_solutions.size() > real_type(0));
 
   mono_variable_fixing reduction( mono_p, new_solutions, true );
   const combined_problem& sub_p = reduction.get_sub_problem();
@@ -531,7 +531,7 @@ bool base_first_phase::update_solutions
 ( const bi_solution& x1, const bi_solution& x2,
   const optimal_set_type& new_solutions ) 
 {
-  assert(new_solutions.size() > 0.);
+  assert(new_solutions.size() > real_type(0));
 
   bool ok = false;
   optimal_set_type::const_iterator it1; 
@@ -564,7 +564,7 @@ bool base_first_phase::update_solutions
       ok = true;
     }
 
-  if ( new_solutions.size() > 2.)
+  if ( new_solutions.size() > real_type(2) )
     {
       ++it1;
 

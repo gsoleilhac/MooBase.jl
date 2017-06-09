@@ -186,10 +186,10 @@ void combined_triangle::gnuplot( std::ostream& os ) const
   f << m_top_left.profit_1 << " " << m_top_left.profit_2 << std::endl;
 
   const real_type x_margin =
-    (real_type)((real_type)(get_right() - get_left()) * 0.1);
+    (real_type)((real_type)(get_right() - get_left()) * real_type(0.1));
   const real_type y_margin =
     (real_type)((real_type)
-    (m_top_left.profit_2 - m_bottom_right.profit_2) * 0.1);
+    (m_top_left.profit_2 - m_bottom_right.profit_2) * real_type(0.1));
 
   os << "set xrange [ " << get_left() - x_margin << " : "
      << get_right() + x_margin << " ]\n";

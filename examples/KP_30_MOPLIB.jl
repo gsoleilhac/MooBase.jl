@@ -5,9 +5,7 @@ z2 = [65,90,90,77,95,84,70,94,66,92,74,97,60,60,65,97,93,60,69,74,85,66,100,68,9
 weigths = [80,87,68,72,66,77,99,85,70,93,98,72,100,89,67,86,91,79,71,99,69,83,76,94,61,88,62,77,64,75]
 capacity = 1188
 
-id = KP(z1,z2,weigths,capacity)
-
-z1,z2,sol_weigths,res = solveKP(id)
+z1,z2,sol_weigths,res = solveKP(KP(z1,z2,weigths,capacity))
 
 
 

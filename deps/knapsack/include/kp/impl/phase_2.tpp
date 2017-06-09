@@ -417,8 +417,7 @@ kp::phase_2<View>::dist( const cost_vector& u, const constraint_type& h ) const
 {
   const cost_vector coeff = h.get_coefficient();
 
-  return ( h.get_right_hand_side() - u.scalar_product(coeff) )
-    / std::sqrt( (double)coeff.scalar_product(coeff) );
+  return ( h.get_right_hand_side() - u.scalar_product(coeff) ) / moo::real_type(std::sqrt( (double)coeff.scalar_product(coeff) ) );
   //return h.get_right_hand_side() - u.scalar_product(coeff);
 } // phase_2::dist()
 

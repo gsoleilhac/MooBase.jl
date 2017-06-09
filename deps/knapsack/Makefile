@@ -1,4 +1,3 @@
-
 kp_sources = $(wildcard src/kp/*.cpp)
 kp_objects = $(patsubst src/kp/%.cpp, obj/%.o, $(kp_sources))
 

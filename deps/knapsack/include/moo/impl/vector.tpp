@@ -295,13 +295,13 @@ moo::vector<T>::operator/( const value_type& v ) const
  * \param os The stream in which we write.
  * \param v The vector to write.
  */
-template<typename T>
-std::ostream& operator<<( std::ostream& os, const moo::vector<T>& v )
-{
-  os << v[0];
+// template<typename T>
+// std::ostream& operator<<( std::ostream& os, const moo::vector<T>& v )
+// {
+//   os << v[0];
 
-  for (unsigned int i=1; i!=v.size(); ++i)
-    os << '\t' << v[i];
+//   for (unsigned int i=1; i!=v.size(); ++i)
+//     os << '\t' << v[i];
 
-  return os;
-} // operator<<() [vector]
+//   return os;
+// } // operator<<() [vector]

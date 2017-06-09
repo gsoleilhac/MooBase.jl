@@ -1,5 +1,5 @@
-CC := g++
-CFLAGS := -Wall -lm -fPIC
+CC :=g++
+CFLAGS := -Wall -fPIC
 INCLUDES :=  -I../../include
 
 OBJ_DIR = ../../obj

@@ -35,7 +35,7 @@ mt_linear_relaxation<Problem>::calculate
   const profit_type current_profit, const weight_type capacity ) const
 {
   assert( split_item <= p.size() );
-  assert( capacity >= 0. );
+
 
   result_type result;
 

@@ -113,9 +113,19 @@ namespace moo
         return m_value < (that.m_value - std::max(m_epsilon, that.m_epsilon));
     }
 
+    inline bool operator<( const int that ) const
+    {
+        return *this < self_type(that);
+    }
+
     inline bool operator<=( const self_type& that ) const
     {
       return !(that < *this);
+    }
+
+    inline bool operator<=( const int that ) const
+    {
+        return *this <= self_type(that);
     }
 
     inline bool operator>( const self_type& that ) const
@@ -123,9 +133,19 @@ namespace moo
       return that < *this;
     }
 
+    inline bool operator>( const int that ) const
+    {
+        return *this > self_type(that);
+    }
+
     inline bool operator>=( const self_type& that ) const
     {
       return that <= *this;
+    }
+
+    inline bool operator>=( const int that ) const
+    {
+        return *this >= self_type(that);
     }
 
     inline bool operator==( const self_type& that ) const
@@ -141,9 +161,19 @@ namespace moo
           <= std::max(m_epsilon, that.m_epsilon);
     }
 
+    inline bool operator==( const int that ) const
+    {
+        return *this == self_type(that);
+    }
+
     inline bool operator!=( const self_type& that ) const
     {
       return !((*this) == that);
+    }
+
+    inline bool operator!=( const int that ) const
+    {
+        return *this != self_type(that);
     }
 
     inline self_type operator+( const self_type& that ) const
@@ -151,9 +181,19 @@ namespace moo
       return self_type(m_value + that.m_value);
     }
 
+    inline self_type operator+( const int that ) const
+    {
+      return self_type(m_value + that);
+    }
+
     inline self_type operator-( const self_type& that ) const
     {
       return self_type(m_value - that.m_value);
+    }
+
+    inline self_type operator-( const int that ) const
+    {
+      return self_type(m_value - that);
     }
 
     inline self_type operator*( const self_type& that ) const
@@ -161,14 +201,31 @@ namespace moo
       return self_type(m_value * that.m_value);
     }
 
+    inline self_type operator*( const int that ) const
+    {
+      return self_type(m_value * that);
+    }
+
     inline self_type operator/( const self_type& that ) const
     {
       return self_type(m_value / that.m_value);
     }
 
+    inline self_type operator/( const int that ) const
+    {
+      return self_type(m_value / that);
+    }
+
     inline self_type& operator+=( const self_type& that )
     {
       m_value += that.m_value;
+      m_epsilon = make_epsilon<value_type>::value(m_value);
+      return *this;
+    }
+
+    inline self_type& operator+=( const int that )
+    {
+      m_value += that;
       m_epsilon = make_epsilon<value_type>::value(m_value);
       return *this;
     }
@@ -180,6 +237,13 @@ namespace moo
       return *this;
     }
 
+    inline self_type& operator-=( const int that )
+    {
+      m_value -= that;
+      m_epsilon = make_epsilon<value_type>::value(m_value);
+      return *this;
+    }
+
     inline self_type& operator*=( const self_type& that )
     {
       m_value *= that.m_value;
@@ -187,9 +251,23 @@ namespace moo
       return *this;
     }
 
+    inline self_type& operator*=( const int that )
+    {
+      m_value *= that;
+      m_epsilon = make_epsilon<value_type>::value(m_value);
+      return *this;
+    }
+
     inline self_type& operator/=( const self_type& that )
     {
       m_value /= that.m_value;
+      m_epsilon = make_epsilon<value_type>::value(m_value);
+      return *this;
+    }
+
+    inline self_type& operator/=( const int that )
+    {
+      m_value /= that;
       m_epsilon = make_epsilon<value_type>::value(m_value);
       return *this;
     }
